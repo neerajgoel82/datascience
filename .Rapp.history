@@ -1,0 +1,11 @@
+system("defaults write org.R-project.R force.LANG en_US.UTF-8")
+install.packages("slidify")
+install.packages("slidify")
+pkgs <- c('ramnathv/slidifyLibraries', 'ramnathv/slidify')#
+devtools::install_github(pkgs)
+source("http://bioconductor.org/biocLite.R")
+biocLite()
+getwd()
+getwd()
+dir()
+biocLite(c("GenomicFeatures","AnnotationDbi"))
