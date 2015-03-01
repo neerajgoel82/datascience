@@ -17,17 +17,27 @@ for iter = 1:num_iters
     %       of the cost function (computeCost) and gradient here.
     %
 
+    %This will generate vector for errors based on theta. It will generate a m * 1 matrix
+    diffVector = X*theta - y;
 
+    %This is the variable to store the diff vector transpose multiplied by X. This will generate 1 * n matrix.
+    diffVectorX = diffVector' * X;
 
+    %Transpose for the above generated vector. This will generate n * 1 matrix
+    diffVectorXTranspose = diffVectorX';
+    delta = (diffVectorXTranspose./m);
 
-
-
+    %Updated theta vector
+    theta = theta - alpha * delta ;
+    % disp(J_history(iter));
 
     % ============================================================
 
     % Save the cost J in every iteration    
     J_history(iter) = computeCost(X, y, theta);
 
+    
 end
 
+%disp(sprintf('final theta %0.6f',theta))
 end
