@@ -22,7 +22,7 @@ grad = zeros(size(theta));
 
 hThetaX = sigmoid(X*theta);
 
-costMatrix = (-1 * (y .* log(hThetaX))) - ((1 - y) .* log( 1 - hThetaX));
+costMatrix = -(y .* log(hThetaX)) - ((1 - y) .* log( 1 - hThetaX));
 delta = sum (costMatrix);
 J = (1 / m ) * delta;
 
