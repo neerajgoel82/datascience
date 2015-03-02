@@ -22,9 +22,8 @@ grad = zeros(size(theta));
 hThetaX = sigmoid(X*theta);
 costMatrix = -(y .* log(hThetaX)) - ((1 - y) .* log( 1 - hThetaX));
 delta = sum (costMatrix);
-%regularizationParam = (lambda/(2*m))*sum(theta.^2) - theta(1);
-%J = (1 / m ) * delta + regularizationParam;
-J = (1 / m ) * delta;
+regularizationParam = (lambda/(2*m))*sum(theta.^2) - theta(1);
+J = (1 / m ) * delta + regularizationParam;
 
 %Generating gradient
 %This will generate vector for errors based on theta. It will generate a m * 1 matrix
@@ -35,7 +34,10 @@ diffVectorX = diffVector' * X;
 
  %Transpose for the above generated vector. This will generate n * 1 matrix
 diffVectorXTranspose = diffVectorX';
-grad = (diffVectorXTranspose./m);
+regularizationParam = (lambda/m) * theta ; 
+regularizationParam(1) = 0 ; 
+
+grad = (diffVectorXTranspose./m) + regularizationParam ;
 
 
 
