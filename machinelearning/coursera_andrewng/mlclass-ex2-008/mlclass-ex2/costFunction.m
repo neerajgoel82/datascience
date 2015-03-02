@@ -20,11 +20,22 @@ grad = zeros(size(theta));
 % Note: grad should have the same dimensions as theta
 %
 
+%Generating the cost of the hypothesis function
 hThetaX = sigmoid(X*theta);
-
 costMatrix = -(y .* log(hThetaX)) - ((1 - y) .* log( 1 - hThetaX));
 delta = sum (costMatrix);
 J = (1 / m ) * delta;
+
+%Generating gradient
+%This will generate vector for errors based on theta. It will generate a m * 1 matrix
+diffVector = hThetaX - y;
+
+%This is the variable to store the diff vector transpose multiplied by X. This will generate 1 * n matrix.
+diffVectorX = diffVector' * X;
+
+ %Transpose for the above generated vector. This will generate n * 1 matrix
+diffVectorXTranspose = diffVectorX';
+grad = (diffVectorXTranspose./m);
 
 % =============================================================
 
