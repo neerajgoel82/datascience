@@ -22,7 +22,7 @@ grad = zeros(size(theta));
 hThetaX = sigmoid(X*theta);
 costMatrix = -(y .* log(hThetaX)) - ((1 - y) .* log( 1 - hThetaX));
 delta = sum (costMatrix);
-regularizationParam = (lambda/(2*m))*sum(theta.^2) - theta(1)^2;
+regularizationParam = (lambda/(2*m))*sum(theta(2:length(theta)).^2);
 J = (1 / m ) * delta + regularizationParam;
 
 %Generating gradient
