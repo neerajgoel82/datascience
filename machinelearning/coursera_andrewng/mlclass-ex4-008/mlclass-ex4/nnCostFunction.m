@@ -94,8 +94,14 @@ for i=1:m,
 	bigDelta1 = bigDelta1 + (delta2(i,:)' * a1(i,:));
 end
 
-Theta1_grad = bigDelta1 / m;
-Theta2_grad = bigDelta2 / m;
+theta1RegularizationParam = (lambda/m) * Theta1 ; 
+theta1RegularizationParam(:,1) = 0 ; 
+
+theta2RegularizationParam = (lambda/m) * Theta2 ; 
+theta2RegularizationParam(:,1) = 0 ; 
+
+Theta1_grad = bigDelta1 / m + theta1RegularizationParam;
+Theta2_grad = bigDelta2 / m + theta2RegularizationParam;
 % =========================================================================
 
 % Unroll gradients
