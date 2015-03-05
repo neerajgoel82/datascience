@@ -77,6 +77,9 @@ y = (repmat(1:num_labels,m,1) == y);
 costMatrix = -(y .* log(hThetaX)) - ((1 - y) .* log( 1 - hThetaX));
 J = sum(sum(costMatrix)) / m;
 
+regularizationParam = (lambda/(2*m))* (sum(sum(Theta1(:,2:size(Theta1,2)).^2)) + sum(sum(Theta2(:,2:size(Theta2,2)).^2)));
+J = J + regularizationParam;
+
 % =========================================================================
 
 % Unroll gradients
