@@ -62,25 +62,20 @@ Theta2_grad = zeros(size(Theta2));
 %               and Theta2_grad from Part 2.
 %
 
+a1=[ones(m,1) X]; 
 
+%preparing a2
+a2 = sigmoid(a1*Theta1');
+a2 = [ones(size(a2, 1), 1) a2];
 
+%preparing hThetaX
+hThetaX = sigmoid(a2*Theta2');
 
+%prepare y
+y = (repmat(1:num_labels,m,1) == y);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-% -------------------------------------------------------------
+costMatrix = -(y .* log(hThetaX)) - ((1 - y) .* log( 1 - hThetaX));
+J = sum(sum(costMatrix)) / m;
 
 % =========================================================================
 
