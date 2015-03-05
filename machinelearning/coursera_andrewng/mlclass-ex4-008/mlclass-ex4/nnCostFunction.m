@@ -65,7 +65,8 @@ Theta2_grad = zeros(size(Theta2));
 a1=[ones(m,1) X]; 
 
 %preparing a2
-a2 = sigmoid(a1*Theta1');
+z2 = a1*Theta1';
+a2 = sigmoid(z2);
 a2 = [ones(size(a2, 1), 1) a2];
 
 %preparing hThetaX
@@ -80,6 +81,21 @@ J = sum(sum(costMatrix)) / m;
 regularizationParam = (lambda/(2*m))* (sum(sum(Theta1(:,2:size(Theta1,2)).^2)) + sum(sum(Theta2(:,2:size(Theta2,2)).^2)));
 J = J + regularizationParam;
 
+%implementation of backpropagation
+delta3 = hThetaX - y ;
+z2 = [ones(size(z2, 1), 1) z2];
+delta2 = (delta3 * Theta2) .* sigmoidGradient(z2) ;
+delta2 = delta2(:,2:end);
+
+bigDelta2 = zeros(size(Theta2));
+bigDelta1 = zeros(size(Theta1));
+for i=1:m,
+	bigDelta2 = bigDelta2 + (delta3(i,:)' * a2(i,:));
+	bigDelta1 = bigDelta1 + (delta2(i,:)' * a1(i,:));
+end
+
+Theta1_grad = bigDelta1 / m;
+Theta2_grad = bigDelta2 / m;
 % =========================================================================
 
 % Unroll gradients
