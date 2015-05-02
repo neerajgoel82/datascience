@@ -1,0 +1,7 @@
+- Prepare the text files containing info about the image data ( imagedata_test_raw , imagedata_train_raw )
+- Create leveldb using convert_imageset ( convert_imageset [FLAGS] ROOTFOLDER/ LISTFILE DB_NAME e.g. convert_imageset /home/neeraj/data/mywork/datascience/kaggle/train_converted_227x227 imagedata_train_raw imagedata_train_lmdb )
+- Compute image mean using compute_image_mean (compute_image_mean [FLAGS] INPUT_DB [OUTPUT_FILE] e.g. compute_image_mean imagedata_train_lmdb /home/neeraj/data/mywork/datascience/kaggle/imagenet_dr_mean.binaryproto)
+- Prepare the solver file (solver.prototxt)
+- Prepare the image net definition file (train_val.prototxt)
+
+Fill in the details of the data layers using the mean file and the level db that we created 
