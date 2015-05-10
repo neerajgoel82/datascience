@@ -23,34 +23,40 @@ var initializeNet = function() {
 	return net ; 
 }
 
+var trainNet = function(net, data) {
+	var trainer = new convnetjs.Trainer(net, {learning_rate:0.01, l2_decay:0.001});
+	for (var i = i ; i < data.length ; i++ ) {
+		trainer.train(data[i].pt, data[i].cls);
+	}
+}
 
-
-var classifyTwoD  = function(net,x,y) {
-	// the network always works on Vol() elements. These are essentially
-	// simple wrappers around lists, but also contain gradients and dimensions
-	// line below will create a 1x1x2 volume and fill it with 0.5 and -1.3
-	var x = new convnetjs.Vol([x,y]);
-	 
-	var probability_volume = net.forward(x);
+var classifyTwoD  = function(net,pt) {
+	var probability_volume = net.forward(pt);
 	console.log('probability that x is class 0: ' + probability_volume.w[0]);
 
 	return probability_volume.w[0] 
 	// prints 0.50101
 }
 
+var getData = function() {
+	var data = [ {
+		pt: new convnetjs.Vol([0.5,-1.3]),
+		cls:0
+	}
+	]
+}
 
 var start = function() {
   // this gets executed on startup
   //... 
-  net = initializeNet();
-  // ...
- 
- 
+  net = initializeNet();	
+  trainNet(net, getData);
+  
   // example of running something every 1 second
   setInterval(periodic, 1000);
 }
 
 function periodic() {
   var d = document.getElementById('egdiv');
-  d.innerHTML = 'Random number: ' +   classifyTwoD(net, Math.random(), Math.random())
+  d.innerHTML = 'Random number: ' +   classifyTwoD(net, new convnetjs.Vol([0.5,-1.3]));
 }
