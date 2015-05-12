@@ -39,9 +39,9 @@ from moviepy.video.io.bindings import mplfig_to_npimage
 import moviepy.editor as mpy
 
 digits = load_digits()
-digits.data.shape
+print digits.data.shape
 
-print(digits['DESCR'])
+#print(digits['DESCR'])
 
 
 nrows, ncols = 2, 5
@@ -57,11 +57,17 @@ plt.savefig('images/digits-generated.png', dpi=150)
 # We first reorder the data points according to the handwritten numbers.
 X = np.vstack([digits.data[digits.target==i]
                for i in range(10)])
+print X.shape
+
 y = np.hstack([digits.target[digits.target==i]
                for i in range(10)])
+print y.shape
+
+#X = digits.data
+#y = digits.target
 
 digits_proj = TSNE(random_state=RS).fit_transform(X)
-
+print digits_proj.shape
 
 def scatter(x, colors):
     # We choose a color palette with seaborn.
