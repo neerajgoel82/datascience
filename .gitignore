@@ -106,5 +106,11 @@ com_crashlytics_export_strings.xml
 crashlytics.properties
 crashlytics-build.properties
 
+#for caffe models and solver state 
 *.caffemodel
 *.solverstate
+
+#for level db created for images 
+*.mdb
+
+
