@@ -1,1 +1,0 @@
-This is an implementation of the tutorial http://alias-i.com/lingpipe/demos/tutorial/sentiment/read-me.html
