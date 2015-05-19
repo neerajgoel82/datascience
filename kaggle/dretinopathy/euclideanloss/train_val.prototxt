@@ -13,7 +13,7 @@ layer {
     mean_file: "/data/mywork/datascience/kaggle/imagenet_dr_mean.binaryproto"
   }
   data_param {
-    source: "imagedata_train_lmdb"
+    source: "../data/imagedata_train_lmdb"
     batch_size: 256
     backend: LMDB
   }
@@ -32,7 +32,7 @@ layer {
     mean_file: "/data/mywork/datascience/kaggle/imagenet_dr_mean.binaryproto"
   }
   data_param {
-    source: "imagedata_test_lmdb"
+    source: "../data/imagedata_test_lmdb"
     batch_size: 50  
     backend: LMDB
   }
