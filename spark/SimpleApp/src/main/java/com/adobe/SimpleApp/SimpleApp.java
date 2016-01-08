@@ -12,8 +12,8 @@ import org.apache.spark.api.java.function.Function;
 public class SimpleApp {
 	public static void main(String[] args) {
 		Options options = new Options();
-		options.addOption("f", false, "Enter file path");
-		String logFile = args[0];// "/home/neeraj/Softwares/spark-1.6.0/README.md";
+		options.addOption("f", true, "Enter file path");
+		String logFile = "/home/neeraj/Softwares/spark-1.6.0/README.md";
 									// // Should be some file on your system
 
 		CommandLineParser parser = null;
